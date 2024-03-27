@@ -1,7 +1,7 @@
 ﻿import random
 import time
 
-raha = 100  
+raha = int(input("Sisestage kui palju raha te tahate kaotada")
 
 print("Tere tulemast kasiinosse!")
 print("Siin kasiinos on mäng, kus võitmine on võimatu.")
