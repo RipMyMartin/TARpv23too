@@ -36,8 +36,8 @@ while raha >= 10:
         time.sleep(0.5)  
         
     print("\nTeie number on:", end=" ")
-    for i in range(1, varv + 1):
-        print(i, end=" ", flush=True)
+    for i in range(1, varv + 1): 
+        print(i, end=" ", flush=True) # Flush сбрасывать буфер вывода после каждого вызова print
         time.sleep(0.5)
         
     print()
