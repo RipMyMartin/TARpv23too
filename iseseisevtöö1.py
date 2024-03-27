@@ -1,42 +1,59 @@
-import random
+﻿import random
+import time
 
-raha = [100]  # Alguses on mängijal 100 eurot
+raha = 100  
 
 print("Tere tulemast kasiinosse!")
 print("Siin kasiinos on mäng, kus võitmine on võimatu.")
 
-while raha[-1] >= 10:  # Mäng jätkub seni, kuni mängijal on vähemalt 10 eurot
-
-    print(f"\nTeil on hetkel {raha[-1]} eurot.")
-
+while raha >= 10:
+    print(f"\nTeil on hetkel {raha} eurot.")
     while True:
         try:
             panus = int(input("Palun sisestage oma panus (vähemalt 10 eurot): "))
             if panus < 10:
                 raise ValueError("Panus peab olema vähemalt 10 eurot!")
-            if panus > raha[-1]:
+            if panus > raha:
                 raise ValueError("Teil pole piisavalt raha selle panuse tegemiseks!")
             break
         except ValueError as ve:
             print(ve)
-
+            
     print("Pöörutan ratast...")
-    print("Õnne teile!")
+    time.sleep(1)  
+    varv = random.randint(1, 10)
+    for frame_number in range(5):
+        if frame_number == 0:
+            print("|   |   |   |", end="\r")
+        elif frame_number == 1:
+            print("| {} |   |   |".format(varv), end="\r")
+        elif frame_number == 2:
+            print("| {} | {} |   |".format(varv, varv), end="\r")
+        elif frame_number == 3:
+            print("| {} | {} | {} |".format(varv, varv, varv), end="\r")
+        elif frame_number == 4:
+            print("| {} | {} | {} |".format(varv, varv, varv), end="\r")
+        time.sleep(0.5)  
+        
+    print("\nTeie number on:", end=" ")
+    for i in range(1, varv + 1):
+        print(i, end=" ", flush=True)
+        time.sleep(0.5)
+        
+    print()
 
-    # Genereerime juhusliku numbri 1 kuni 10
-    tulemus = random.randint(1, 10)
-
-    # Kuna see on "võimatu" mäng, siis alati kaotate
-    print("Teie number on:", tulemus)
-    if tulemus == 10:
+    if varv == 10:
         print("Te võitsite!")
-        raha.append(raha[-1] + panus)  # Võidu korral lisatakse panus mängijaraha listi
+        raha += panus
     else:
         print("Te kaotasite!")
-        raha.append(raha[-1] - panus)
+        for i in range(varv + 1, 10):
+            print(i, end=" ", flush=True)
+            time.sleep(0.5)
+        print()
+        raha -= panus
 
-print("Teil ei ole piisavalt raha, et mängida. Aitäh mängimast! Teie järel olev summa on", raha[-1], "eurot.")
-
+print("Teil ei ole piisavalt raha, et mängida. Aitäh mängimast! Teie järel olev summa on", raha, "eurot.")
 
 
 
