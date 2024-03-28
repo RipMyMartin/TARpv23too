@@ -1,7 +1,15 @@
 ﻿import random
 import time
 
-raha = int(input("Sisestage kui palju raha te tahate kaotada")
+while True:
+    try:
+        raha = int(input("Sisestage kui palju raha te tahate kaotada: "))
+        if raha <=0:
+            print("Te olete sisestanud negatiivse arvu või nulli, sisestage positiivse numberi:  ")
+        else:
+            break
+    except ValueError:
+        print("Te olete sisetanud midagi muud, sisestage number ")
 
 print("Tere tulemast kasiinosse!")
 print("Siin kasiinos on mäng, kus võitmine on võimatu.")
@@ -16,8 +24,8 @@ while raha >= 10:
             if panus > raha:
                 raise ValueError("Teil pole piisavalt raha selle panuse tegemiseks!")
             break
-        except ValueError as ve:
-            print(ve)
+        except ValueError:
+            print("Te olete sisetanud midagi muud, sisestage number ")
             
     print("Pöörutan ratast...")
     time.sleep(1)  
@@ -35,11 +43,6 @@ while raha >= 10:
             print("| {} | {} | {} |".format(varv, varv, varv), end="\r")
         time.sleep(0.5)  
         
-    print("\nTeie number on:", end=" ")
-    for i in range(1, varv + 1): 
-        print(i, end=" ", flush=True) # Flush принудительно сбрасываеть буфер вывода после каждого вызова print
-        time.sleep(0.5)
-        
     print()
 
     if varv == 10:
@@ -47,11 +50,6 @@ while raha >= 10:
         raha += panus
     else:
         print("Te kaotasite!")
-        for i in range(varv + 1, 10):
-            print(i, end=" ", flush=True)
-            time.sleep(0.5)
-        print()
-        raha -= panus
 
 print("Teil ei ole piisavalt raha, et mängida. Aitäh mängimast! Teie järel olev summa on", raha, "eurot.")
 
